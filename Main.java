@@ -41,7 +41,7 @@ public class Main {
             final int threadIndex = i;
             tasks[i] = CompletableFuture.runAsync(() -> {
                 try {
-                    for (int nonce = threadIndex; nonce < MAX_NONCE; nonce++) {
+                    for (int nonce = threadIndex; nonce < MAX_NONCE; nonce=nonce + numThreads) {
                         String input = BASE_TEXT + nonce;
                         String hash = sha256(input);
                         if (hash.startsWith(TARGET_PREFIX)) {
